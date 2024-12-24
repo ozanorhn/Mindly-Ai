@@ -6,15 +6,17 @@
     <title>Mindly AI</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
     <script src="../script.js" defer></script>
 </head>
-<body>
-    
+<body onload="includeHTML()">
+
     <div w3-include-html="../templates/header.html"></div>
 
     <div class="container my-5">
-        <h1 class="text-center mb-4">Mindly AI <img src="../assests/img/Bild Hintergrund Entfernen.png" alt="" srcset=""> </h1>
+        <h1 class="text-center mb-4">Mindly AI</h1>
 
+        <!-- Funktionen Auswahl -->
         <div class="text-center mb-5">
             <h3>Wähle eine Funktion</h3>
             <div class="btn-group d-flex flex-wrap justify-content-center" role="group" aria-label="Funktionen">
@@ -25,6 +27,7 @@
             </div>
         </div>
 
+        <!-- Quiz Sektion -->
         <div id="quiz" class="hidden">
             <h3>Quiz</h3>
             <div class="mb-3">
@@ -35,6 +38,7 @@
             <div id="quizOutput" class="mt-3 p-3 bg-light border rounded">Das Quiz wird hier angezeigt...</div>
         </div>
 
+        <!-- Vokabeltrainer Sektion -->
         <div id="vocabulary" class="hidden">
             <h3>Vokabeltrainer</h3>
             <div class="mb-3">
@@ -45,6 +49,7 @@
             <div id="vocabularyOutput" class="mt-3 p-3 bg-light border rounded">Der Vokabeltrainer wird hier angezeigt...</div>
         </div>
 
+        <!-- Lernplan Sektion -->
         <div id="learningPlan" class="hidden">
             <h3>Lernplan</h3>
             <div class="mb-3">
@@ -55,11 +60,21 @@
             <div id="learningPlanOutput" class="mt-3 p-3 bg-light border rounded">Der Lernplan wird hier angezeigt...</div>
         </div>
 
+        <!-- OCR Sektion -->
         <div id="ocr" class="hidden">
             <h3>Bild- und Spracherkennung</h3>
-            <p>Inhalt für Bild- und Spracherkennung erscheint hier.</p>
+            <input type="file" accept="image/*" onchange="runOCR(this)" class="form-control mb-3">
+            <div id="ocrOutput" class="mt-3 p-3 bg-light border rounded">Erkannte Inhalte werden hier angezeigt...</div>
         </div>
+    </div>
 
+    <!-- Spinner -->
+    <div id="loading" style="display: none;">
+        <div class="d-flex justify-content-center my-3">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Lädt...</span>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
